@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
     double customer_need, interest_rate, duration_of_loan, face_value, monthly_payment;
     cout.setf(ios::fixed);
     cout.setf(ios::showpoint);
-    cout.precision(2);
+    cout.precision(3);
     //Input amount customer needs
     cout<<"Amount customer needs:\n";
     cin>>customer_need;
@@ -32,11 +32,12 @@ int main(int argc, char** argv) {
     cout<<"Duration of loan:\n";
     cin>>duration_of_loan;
     //Output face value required
+    cout.precision(2);
     face_value = customer_need / (1.0 - interest_rate*(duration_of_loan/12.0));
-    cout<<"Face value required for customer to receive loan:\n"<<face_value<<endl;
+    cout<<"Face value required for customer to receive loan:\n"<<"$"<<face_value<<endl;
     //Output monthly payment
     monthly_payment=face_value/duration_of_loan;
-    cout<<"Monthly payment on loan:\n"<<monthly_payment<<endl;
+    cout<<"Monthly payment on loan:\n"<<"$"<<monthly_payment<<endl;
     
     return 0;
 }
