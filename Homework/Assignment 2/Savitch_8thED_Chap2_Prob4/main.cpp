@@ -1,7 +1,7 @@
 /* 
  * File:   main.cpp
  * Author: Nornubari Kanabolo
- * Savitch 8th Edition Chapter 2 Problem 3
+ * Savitch 8th Edition Chapter 2 Problem 4
  * New Retroactive Salary
  * Created on July 2, 2014, 11:29 AM
  */
