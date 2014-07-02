@@ -19,13 +19,16 @@ using namespace std;
 int main(int argc, char** argv) {
     //Declare Variables
     const double pay_increase=.076;
-    double previous_annual_salary, new_annual_salary, new_monthly_salary;
+    double previous_annual_salary, new_annual_salary, new_monthly_salary, retroactive_pay;
     cout.setf(ios::fixed);
     cout.setf(ios::showpoint);
     cout.precision(2);
     //Input Previous Annual Salary
     cout<<"Enter employee's previous salary, in dollars, and press Return:\n";
     cin>>previous_annual_salary;
+    //Retroactive pay due to employee
+    retroactive_pay=((previous_annual_salary*(1+pay_increase))/2);
+    cout<<"Retroactive pay due to employee:\n"<<retroactive_pay<<endl;
     //Output New Salary
     new_annual_salary=previous_annual_salary*(1+pay_increase);
     cout<<"Employee's new Annual Salary is:\n"<<"$"<<new_annual_salary<<endl;
