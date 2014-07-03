@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
 //Declare variables
     float n,guess,r;
     
-    //Set the random number seed
+    //Random number seed
     srand(static_cast<unsigned int>(time(0)));  
     
     //Input the number [10,121]
