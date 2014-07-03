@@ -1,7 +1,8 @@
 /* 
  * File:   main.cpp
- * Author: rcc
- *
+ * Author: Nornubari Kanabolo
+ * Savitch 8th Edition Chapter 2 Problem 12
+ * Babylonian Algorithm
  * Created on July 2, 2014, 8:56 PM
  */
 
@@ -11,9 +12,12 @@
 
 using namespace std;
 
-/*
- * 
- */
+//Global Constant
+
+//Function prototypes
+
+//Execution
+
 int main(int argc, char** argv) {
 //Declare variables
     float n,guess,r;
