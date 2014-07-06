@@ -6,8 +6,9 @@
  * Created on July 6, 2014, 1:26 PM
  */
 
-#include <iostream>//User Defined Libraries
-
+//User Defined Libraries
+#include <iostream>
+#include <string>
 using namespace std;
 
 //Global Constants
