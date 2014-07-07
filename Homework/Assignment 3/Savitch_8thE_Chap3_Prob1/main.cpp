@@ -107,14 +107,12 @@ int main(int argc, char** argv) {
                         default:
                             cout<<INVALID_LTTR_P1;
                     }
-    
-    bool valid = false; //Assume a non-valid answer
+    //Play Again
+    bool valid = false; 
                     while (!valid) {
-                        //Get input from user
                         cout<<endl;
                         cout<<"Want to play again?[Y/N]: ";
                         cin>>over;
-                        //Check to see if the input is valid
                         switch (over) {
                             case 'Y':
                             case 'y':

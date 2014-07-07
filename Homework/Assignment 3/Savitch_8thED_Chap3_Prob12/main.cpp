@@ -24,9 +24,9 @@ int main(int argc, char** argv) {
     int x_terms;
     char proceed;//If user wants to continue
     //Outputs
-    float pi_aproxim;//Our approximate value of pi
+    float pi_aproxim;
     while(running) {
-        //Initial approximation of pi
+        //Starting approximation of pi
         pi_aproxim = 0;
         cout<<"Enter the number of terms you want to approximate pi with: ";
         cin>>x_terms;
@@ -40,6 +40,7 @@ int main(int argc, char** argv) {
         //Approximate value of pi
         cout<<"The approximate value of pi is: "<<pi_aproxim<<endl;
         
+        //Run Again
         cout<<"Want to approximation pi again?\n";
         cout<<"If yes, press Y then Return: ";
         cin>>proceed;
