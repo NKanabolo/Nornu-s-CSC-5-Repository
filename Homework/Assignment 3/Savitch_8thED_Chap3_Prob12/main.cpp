@@ -6,14 +6,16 @@
  * Created on July 6, 2014, 4:44 PM
  */
 
-
+//User Defined Libraries
 #include <iostream>
-#include <math.h>
+#include <cmath>
 using namespace std;
 
-/*
- * 
- */
+//Global Constants
+
+//Function Prototypes
+
+//Execution
 int main(int argc, char** argv) {
     //Declare variables
     bool running = true;
