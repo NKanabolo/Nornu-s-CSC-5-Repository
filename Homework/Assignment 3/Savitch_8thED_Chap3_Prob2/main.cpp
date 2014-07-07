@@ -1,7 +1,8 @@
 /* 
  * File:   main.cpp
- * Author: Nornubari's Laptop
- *
+ * Author: Nornubari Kanabolo
+ * Savitch 8th EDition Chapter 3 Problem 2
+ * Interest Payment on Credit Card
  * Created on July 6, 2014, 3:26 PM
  */
 
