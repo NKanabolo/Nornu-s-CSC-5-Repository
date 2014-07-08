@@ -18,7 +18,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
     //Declare Variables
-    double customer_need, interest_rate, duration_of_loan, face_value, monthly_payment;
+    float customer_need, interest_rate, duration_of_loan, face_value, monthly_payment;
     cout.setf(ios::fixed);
     cout.setf(ios::showpoint);
     cout.precision(3);

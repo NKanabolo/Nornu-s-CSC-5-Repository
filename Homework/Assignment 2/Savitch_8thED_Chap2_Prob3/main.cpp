@@ -18,8 +18,8 @@ using namespace std;
 
 int main(int argc, char** argv) {
     //Declare Variables
-    const double pay_increase=.076;
-    double previous_annual_salary, new_annual_salary, new_monthly_salary, retroactive_pay;
+    const float pay_increase=.076;
+    float previous_annual_salary, new_annual_salary, new_monthly_salary, retroactive_pay;
     cout.setf(ios::fixed);
     cout.setf(ios::showpoint);
     cout.precision(2);

@@ -18,8 +18,8 @@ using namespace std;
 
 int main(int argc, char** argv) {
     //Declare the variables
-    const double artificial_sweetener_grams =.001, pounds_to_grams=453.592;
-    double bottles_to_kill_man, sweetener_kill_mouse, weight_mouse, ending_dieter_weight, sweetener_kill_man;
+    const float artificial_sweetener_grams =.001, pounds_to_grams=453.592;
+    float bottles_to_kill_man, sweetener_kill_mouse, weight_mouse, ending_dieter_weight, sweetener_kill_man;
     cout.setf(ios::fixed);
     cout.setf(ios::showpoint);
     cout.precision(3);

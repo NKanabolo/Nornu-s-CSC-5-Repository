@@ -18,7 +18,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
     //Declare the variables
-    double weight_ounces, weight_tons, one_ton=35273.92, amount_boxes_for_ton;
+    float weight_ounces, weight_tons, one_ton=35273.92, amount_boxes_for_ton;
     cout.setf(ios::fixed);
     cout.setf(ios::showpoint);
     cout.precision(7);

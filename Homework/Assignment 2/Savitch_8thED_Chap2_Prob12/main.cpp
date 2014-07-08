@@ -6,9 +6,9 @@
  * Created on July 2, 2014, 8:56 PM
  */
 
-#include <cstdlib> //Set Random number seed
-#include <iostream>//cin/cout
-#include <ctime>   //Utilize time as input to seed
+#include <cstdlib>
+#include <iostream>
+#include <ctime> 
 
 using namespace std;
 
@@ -19,13 +19,13 @@ using namespace std;
 //Execution
 
 int main(int argc, char** argv) {
-//Declare variables
+    //Declare variables
     float n,guess,r;
     
     //Random number seed
     srand(static_cast<unsigned int>(time(0)));  
     
-    //Input the number [10,121]
+    //Input [10,121]
     n=rand()%120+11;
     
     //First Pass Babylonian Approximation
