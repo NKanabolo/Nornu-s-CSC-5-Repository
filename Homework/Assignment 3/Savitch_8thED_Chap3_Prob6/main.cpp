@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
     {
     d=d*(-1);
     cout<<"The roots are imaginary!\n";
-    cout<<"The roots of the quadratic equation are : " <<(-b/(2*a))<<" + "<<(sqrt(d)/(2*a))<<"i and "<<(-b/(2*a))<<" - "<<(sqrt(d)/(2*a))<<endl;
+    cout<<"The roots of the quadratic equation are : " <<(-b/(2*a))<<" + "<<(sqrt(d)/(2*a))<<"i and "<<(-b/(2*a))<<" - "<<(sqrt(d)/(2*a))<<"i"<<endl;
     }    
     return 0;
 }
