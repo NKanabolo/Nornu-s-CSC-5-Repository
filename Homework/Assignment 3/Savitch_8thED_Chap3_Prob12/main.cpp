@@ -31,13 +31,11 @@ int main(int argc, char** argv) {
         cout<<"Enter the number of terms you want to approximate pi with: ";
         cin>>x_terms;
         cout<<endl;    
-        //Calculate (-1^n)/(2n+1), add it to pi,
+        //Calculate
         for(x_terms;x_terms>=0;x_terms--) {
             pi_aproxim+=(pow(-1,x_terms))/(2*x_terms+1);
         }
-        
         pi_aproxim*=4;
-        //Approximate value of pi
         cout<<"The approximate value of pi is: "<<pi_aproxim<<endl;
         
         //Run Again

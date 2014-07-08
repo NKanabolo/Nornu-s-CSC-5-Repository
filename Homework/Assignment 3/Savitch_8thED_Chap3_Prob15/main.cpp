@@ -26,11 +26,12 @@ int main(int argc, char** argv) {
     cout<<"Find out whether or not the sphere will sink or float.\n"<<"\n";
     
     //Inputs
-    cout<<"Enter weight of sphere, in pounds:";
-    cin>>weight;
-    cout<<"\n";
+    
     cout<<"Enter radius of sphere, in feet:";
     cin>>radius;
+    cout<<"\n";
+    cout<<"Enter weight of sphere, in pounds:";
+    cin>>weight;
     cout<<"\n";
     
     //Calculations

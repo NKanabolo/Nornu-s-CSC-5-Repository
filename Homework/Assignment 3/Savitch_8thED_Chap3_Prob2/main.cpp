@@ -18,12 +18,12 @@ int main(int argc, char** argv) {
     cout<<"Calculate the amount due, interest due, and minimum "
                     <<"payment due for an account with a given balance.\n\n";
     //Declare variables
-    const float INTEREST_THOUS = 1.5e-2;//Interest up to $1000
-    const float INTEREST_OVER = 1e-2;//Interest over $1000
-    const float PAY_MULT = 1e-1;//Payment multiplier
-    float CURRENCY_PCN;
-    const int DUE_THRESH = 10;//Due threshold
-    const int BAL_THRESH = 1000;//Balance threshold for normal interest
+    const float int_thous = 1.5e-2;//Interest up to $1000
+    const float int_over = 1e-2;//Interest over $1000
+    const float pay_mult = 1e-1;//Payment multiplier
+    float curr_pcn;
+    const int due_thrsh = 10;//Due threshold
+    const int bal_thrsh = 1000;//Balance threshold for normal interest
     
     //Input
     float balance;//Balance on the account
@@ -38,20 +38,20 @@ int main(int argc, char** argv) {
         cout<<"What is the balance for your account?: $";
         cin>>balance;
         //Calculate interest due
-        interest_due = balance * INTEREST_THOUS; //Interest on first $1000
-        if (balance >= BAL_THRESH) //Is the balance greater than $1000?
-            interest_due += ((balance - BAL_THRESH) * INTEREST_OVER); //Interest on the rest
+        interest_due = balance * int_thous; //Interest on first $1000
+        if (balance >= bal_thrsh) //Is the balance greater than $1000?
+            interest_due += ((balance - bal_thrsh) * int_over); //Interest on the rest
         //Calculate total amount due
         total_due = balance + interest_due;
         //Calculate minimum payment
-        if (total_due <= DUE_THRESH)
+        if (total_due <= due_thrsh)
             min_pay = total_due;
         else
-            min_pay = total_due * PAY_MULT;
+            min_pay = total_due * pay_mult;
         //Currency Output
         cout.setf(ios::fixed);
         cout.setf(ios::showpoint);
-        cout.precision(CURRENCY_PCN);
+        cout.precision(curr_pcn);
         //Output result
         cout<<"Balance:          $"<<balance<<endl;
         cout<<"Interest due:     $"<<interest_due<<endl;

@@ -14,12 +14,12 @@ using namespace std;
  */
 int main(int argc, char** argv) {
     //Declare variables
-    const float gam_upb = 1e-11;
-    const float xray_upb = 1e-8;
-    const float uv_upb = 4e-7;
-    const float vis_upb = 7e-7;
-    const float infr_upb = 1e-3;
     const float mw_upb = 1e-2;
+    const float infr_upb = 1e-3;
+    const float vis_upb = 7e-7;
+    const float uv_upb = 4e-7;
+    const float xray_upb = 1e-8;
+    const float gam_upb = 1e-11;
     //Input Wavelength
     float wavelength;
     cout<<"Please enter a wavelength(in meters): ";

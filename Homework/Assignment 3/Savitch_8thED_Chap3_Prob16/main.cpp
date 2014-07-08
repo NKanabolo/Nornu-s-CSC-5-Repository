@@ -22,7 +22,6 @@ int main(int argc, char** argv) {
     int celsius = 100; 
     //Output
     int fahrenheit;
-    //Decrease Fahrenheit an Celsius until equal
     do {
     celsius--;
     fahrenheit = ((9*celsius)/5)+32;
