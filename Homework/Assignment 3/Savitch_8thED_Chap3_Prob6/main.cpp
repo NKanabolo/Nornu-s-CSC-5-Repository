@@ -1,7 +1,8 @@
 /* 
  * File:   main.cpp
- * Author: Nornubari's Laptop
- *
+ * Author: NornubariKanabolo
+ * Savitch 8th EDition Chapter 3 Problem 6
+ * Quadratic Formula
  * Created on July 7, 2014, 9:51 AM
  */
 

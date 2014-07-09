@@ -1,7 +1,8 @@
 /* 
  * File:   main.cpp
- * Author: Nornubari's Laptop
- *
+ * Author: NornubariKanabolo
+ * Gaddis 7th Edition Chapter 4 Problem 18
+ * Wavelengths
  * Created on July 7, 2014, 3:26 PM
  */
 
