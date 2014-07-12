@@ -1,7 +1,7 @@
 /* 
  * File:   main.cpp
- * Author: Nornubari's Laptop
- *
+ * Author: Nornubari Kanabolo
+ * Gaddis and Savitch Assignment4 Problems
  * Created on July 11, 2014, 11:12 PM
  */
 
