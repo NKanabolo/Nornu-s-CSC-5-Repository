@@ -1,7 +1,8 @@
 /* 
  * File:   main.cpp
- * Author: Nornubari's Laptop
- *
+ * Author: Nornubari Kanabolo
+ * Gaddis 7th EDition Chapter 5 Problem 1
+ * ASCII Characters
  * Created on July 11, 2014, 10:40 PM
  */
 
@@ -9,9 +10,11 @@
 
 using namespace std;
 
-/*
- * 
- */
+//Global COnstants
+
+//Function Prototypes
+
+//Execution
 int main(int argc, char** argv) {
     //Declare variables
     const int linebreak = 16;//New line every 16 characters

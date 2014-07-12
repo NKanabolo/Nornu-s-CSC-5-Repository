@@ -1,7 +1,7 @@
 /* 
  * File:   main.cpp
  * Author: Nornubari Kanabolo
- * Gaddis 7th EDition Chapter 5 Problem 1
+ * Gaddis 7th EDition Chapter 5 Problem 2
  * Sum Numbers
  * Created on July 11, 2014, 8:58 PM
  */
