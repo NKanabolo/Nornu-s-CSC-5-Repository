@@ -19,10 +19,10 @@ int main(int argc, char** argv) {
     int hp, init, atk, def, gatk, gdef, hurt, ghurt, agi, gagi, ghp;
     atk = 10;//user attack
     def = 15;//user defense
-    agi = 5;//user gagic
-    gatk = 10;//gremlin attack
-    gdef = 15;//gremlin defense
-    gagi = 5;//gremlin gagic
+    agi = 5;//user magic
+    gatk = 15;//gremlin attack
+    gdef = 20;//gremlin defense
+    gagi = 10;//gremlin magic
 
     //Random number seeds
     srand((unsigned)time(0));
@@ -65,18 +65,18 @@ int main(int argc, char** argv) {
     choice = rand()%3;
     switch (choice) {
       case 1:
-        gatk = rand()%20+10;
-	gdef = rand()%10+10;
+        gatk = rand()%20+15;
+	gdef = rand()%10+20;
 	gagi = rand()%5;
 	break;
       case 2:
-        gatk = rand()%5+10;
-	gdef = rand()%10+10;
+        gatk = rand()%5+15;
+	gdef = rand()%10+20;
 	gagi = rand()%15;
         break;
       case 3:
-        gatk = rand()%10+10;
-	gdef = rand()%20+10;
+        gatk = rand()%10+15;
+	gdef = rand()%20+20;
 	gagi = rand()%5;
 	break;
 	}
@@ -95,7 +95,6 @@ int main(int argc, char** argv) {
     if (ghp < 1) {
       cout<<"You killed the beast!! You are victorious with "<<hp<<" hp left.\n";
       cin.get();
-      return 0;
       }
     cout<<"The gremlin now has "<<ghp<<" hp left.\n";
     hurt = (gatk - agi) - (def/gatk);
@@ -109,7 +108,6 @@ int main(int argc, char** argv) {
     if (hp < 1) {
       cout<<"You died. The beast still has "<<ghp<<" hp left.\n";
       cin.get();
-      return 0;
       }
     cout<<"You now have "<<hp<<" hp left.\n";
     cout<<endl;
