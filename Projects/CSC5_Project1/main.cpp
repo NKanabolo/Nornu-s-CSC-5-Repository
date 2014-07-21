@@ -138,14 +138,14 @@ int main(int argc, char** argv) {
 	gmag = rand()%5;
 	break;
     }
-//Gremlin does damage to user
+    //Gremlin does damage to user
     hurt = (gatk - mag) - (def/gatk);
     if (hurt < 0) {
       hurt = 0;
     }
     hp = hp - hurt;
     cout<<"The gremlin hit you for "<<hurt<<" damage."<<endl;
-//User killed by gremlin
+    //User killed by gremlin
     if (hp < 1) {
       cout<<"You died. The gremlin still has "<<ghp<<" hp left."<<endl;
       cin.get();
