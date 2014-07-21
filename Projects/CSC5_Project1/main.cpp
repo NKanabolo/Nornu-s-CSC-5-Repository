@@ -89,12 +89,10 @@ int main(int argc, char** argv) {
     }
     ghp = ghp - ghurt;
     cout<<"You did "<<ghurt<<" damage to the gremlin!"<<endl;
-    cin.get();
     
     //User damages gremlin
     if (ghp < 1) {
       cout<<"You destroyed the gremlin! You are victorious with "<<hp<<" hp to spare."<<endl;
-      cin.get();
       }
     cout<<"The gremlin now has "<<ghp<<" hp left."<<endl;
     hurt = (gatk - mag) - (def/gatk);
@@ -107,7 +105,6 @@ int main(int argc, char** argv) {
     //Gremlin damages user
     if (hp < 1) {
       cout<<"You died. The beast still has "<<ghp<<" hp remaining."<<endl;
-      cin.get();
       }
     cout<<"You now have "<<hp<<" hp left."<<endl;
     cout<<endl;
@@ -148,7 +145,6 @@ int main(int argc, char** argv) {
     //User killed by gremlin
     if (hp < 1) {
       cout<<"You died. The gremlin still has "<<ghp<<" hp left."<<endl;
-      cin.get();
       return 0;
       }
     }
