@@ -1,85 +1,80 @@
 /* 
  * File:   main.cpp
- * Author: Nornubari's Laptop
- *
- * Created on July 19, 2014, 10:59 PM
+ * Author: Nornubari Kanabolo
+ * CSC 5 Project 1
  */
 
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+
 using namespace std;
 
-/*
- * 
- */
-int main(int argc, char** argv) {
+int main(int argc, char** argv){
     //Declare variables
-    char choice;
-    int hp, init, atk, def, gatk, gdef, hurt, ghurt, mag, gmag, ghp;
-    atk = 10;//user attack
-    def = 15;//user defense
-    mag = 5;//user magic
-    gatk = 15;//gremlin attack
-    gdef = 20;//gremlin defense
-    gmag = 10;//gremlin magic
+    int choice;
+    int hp, start, atk, def, mag, hurt, gatk, gdef, ghurt, gmag, ghp;
+    atk = 12;//user attack
+    def = 18;//user defense
+    mag = 7;//user magic
+    gatk = 14;//gremlin attack
+    gdef = 18;//gremlin defense
+    gmag = 7;//gremlin magic
 
-    //Random number seeds
-    srand((unsigned)time(0));
-    init = rand()%2+1;
-    ghp = rand()%50 + 60;//health gremlin starts with
-    hp = rand()%20 + 80;//health user starts with
-  
+    //Random seed that determines who starts
+    start = rand()%2+1;
+    hp = rand()%60+100;//health points user starts with
+    ghp = rand()%40+100;//health points gremlin starts with
+    
     //User starts
-    if (init == 1) 
+    if (start == 1) 
     {
-    cout<<"You start."<<endl;
-    while (hp > 0 || ghp > 0) 
-    {
-    cout<<"What is your first move?"<<endl<<"1 - Strong Attack"<<endl<<"2 - Magic Attack"<<endl"3 - Defensive moves"<<endl;
+    cout<<"You attack first and swiftly!"<<endl;
+    
+    //User Menu
+    while (hp > 0 || ghp > 0) {
+    cout<<"Choose what move you want to execute"<<endl<<"1 - Strong Attack"<<endl<<"2 - Magic Attack"<<endl<<"3 - Defensive Move"<<endl;
      do
      {
          cin>>choice;
      }while(choice>3 || choice<1);
-     
-    //User Menu
     switch (choice) {
       case 1:
         atk = rand()%20+10;
-	def = rand()%10+10;
-	mag = rand()%5;
-	break;
+        def = rand()%10+10;
+        mag = rand()%5;
+        break;
       case 2:
         atk = rand()%5+10;
-	def = rand()%10+10;
-	mag = rand()%15;
+        def = rand()%10+10;
+        mag = rand()%15;
         break;
       case 3:
         atk = rand()%10+10;
-	def = rand()%20+10;
-	mag = rand()%5;
-	break;
-	}
+        def = rand()%20+10;
+        mag = rand()%5;
+        break;
+        }
     
-  //Gremlin Menu
+    //Gremlin Menu decides which move it executes
     choice = rand()%3;
     switch (choice) {
       case 1:
-        gatk = rand()%20+15;
-	gdef = rand()%10+20;
-	gmag = rand()%5;
-	break;
+        gatk = rand()%20+10;
+        gdef = rand()%10+10;
+        gmag = rand()%5;
+        break;
       case 2:
-        gatk = rand()%5+15;
-	gdef = rand()%10+20;
-	gmag = rand()%15;
+        gatk = rand()%5+10;
+        gdef = rand()%10+10;
+        gmag = rand()%15;
         break;
       case 3:
-        gatk = rand()%10+15;
-	gdef = rand()%20+20;
-	gmag = rand()%5;
-	break;
-	}
+        gatk = rand()%10+10;
+        gdef = rand()%20+10;
+        gmag = rand()%5;
+        break;
+        }
 
     //Damage to gremlin
     ghurt = (atk - gmag) - (gdef/atk);
@@ -90,9 +85,10 @@ int main(int argc, char** argv) {
     ghp = ghp - ghurt;
     cout<<"You did "<<ghurt<<" damage to the gremlin!"<<endl;
     
-    //User damages gremlin
+    //If user defeats gremlin
     if (ghp < 1) {
       cout<<"You destroyed the gremlin! You are victorious with "<<hp<<" hp to spare."<<endl;
+      return 0;
       }
     cout<<"The gremlin now has "<<ghp<<" hp left."<<endl;
     hurt = (gatk - mag) - (def/gatk);
@@ -102,39 +98,37 @@ int main(int argc, char** argv) {
     hp = hp - hurt;
     cout<<"The gremlin administered to you "<<hurt<<" damage."<<endl;
     
-    //Gremlin damages user
+    //If gremlin defeats user
     if (hp < 1) {
-      cout<<"You died. The beast still has "<<ghp<<" hp remaining."<<endl;
+      cout<<"You have been defeated. The gremlin lives with "<<ghp<<" hp remaining."<<endl;
+      return 0;
       }
-    cout<<"You now have "<<hp<<" hp left."<<endl;
-    cout<<endl;
-     }
-     }
+    cout<<"You now have "<<hp<<" hp left.\n"<<endl;
+    }
+    }
+
     //The gremlin starts
-    else 
-    {
-    cout<<"Gremlin start."<<endl;
-    while (hp > 0 || ghp > 0) 
-    {
+    else {
+    cout<<"Gremlin attacked first!"<<endl;
+    while (hp > 0 || ghp > 0) {
     choice = rand()%3;
-    switch (choice) 
-    {
+    switch (choice) {
       case 1:
-        gatk = rand()%20+15;
-	gdef = rand()%10+20;
-	gmag = rand()%5;
-	break;
+        gatk = rand()%20+10;
+        gdef = rand()%10+10;
+        gmag = rand()%5;
+        break;
       case 2:
-        gatk = rand()%5+15;
-	gdef = rand()%10+20;
-	gmag = rand()%15;
+        gatk = rand()%5+10;
+        gdef = rand()%10+10;
+        gmag = rand()%15;
         break;
       case 3:
-        gatk = rand()%10+15;
-	gdef = rand()%20+20;
-	gmag = rand()%5;
-	break;
-    }
+        gatk = rand()%10+10;
+        gdef = rand()%20+10;
+        gmag = rand()%5;
+        break;
+        }
     //Gremlin does damage to user
     hurt = (gatk - mag) - (def/gatk);
     if (hurt < 0) {
@@ -142,13 +136,49 @@ int main(int argc, char** argv) {
     }
     hp = hp - hurt;
     cout<<"The gremlin hit you for "<<hurt<<" damage."<<endl;
-    //User killed by gremlin
+    //If the gremlin kills the user
     if (hp < 1) {
-      cout<<"You died. The gremlin still has "<<ghp<<" hp left."<<endl;
+      cout<<"You were killed. The gremlin still has "<<ghp<<" hp left."<<endl;
       return 0;
       }
+    cout<<"You now have "<<hp<<" hp left.\n"<<endl;
+    
+    //Next move for user if not killed
+    cout<<"Choose what move you want to execute"<<endl<<"1 - Strong Attack"<<endl<<"2 - Magic Attack"<<endl<<"3 - Defensive Move"<<endl;
+     do{cin>>choice;}while(choice>3 || choice<1);
+    switch (choice) {
+      case 1:
+        atk = rand()%20+10;
+        def = rand()%10+10;
+        mag = rand()%5;
+        break;
+      case 2:
+        atk = rand()%5+10;
+        def = rand()%10+10;
+        mag = rand()%15;
+        break;
+      case 3:
+        atk = rand()%10+10;
+        def = rand()%20+10;
+        mag = rand()%5;
+        break;
+        }
+
+    //User hurts gremlin
+    ghurt = (atk - gmag) - (gdef/atk);
+    if (ghurt < 0) {
+      ghurt = 0;
     }
+    ghp = ghp - ghurt;
+    cout<<"You did "<<ghurt<<" damage to the gremlin!"<<endl;
+    
+    //User wins
+    if (ghp < 1) {
+      cout<<"You destroyed the gremlin! You are victorious with "<<hp<<" hp remaining!"<<endl;
+      return 0;
+      }
+    cout<<"The gremlin now has "<<ghp<<" hp left."<<endl;
     }
-    return 0;
+  }
 }
 
