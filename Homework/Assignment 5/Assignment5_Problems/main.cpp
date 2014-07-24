@@ -48,6 +48,13 @@ void areaperim(float sde_1, float sde_2, float sde_3, float& perime, float& area
 float calcRetl(float whole_prc, float markup);
 //Used in Problem 8
 float fallDist(int time);
+//Used in problem 9
+float kineticE(float mtr, float veloc);
+//Used in problem 10
+void score(int& score);
+int fndLow(int scr1, int scr2, int scr3, int scr4, int scr5);
+void calcAvrg(int scr1, int scr2, int scr3, int scr4, int scr5);
+
 //Execution
 int main(int argc, char** argv) {
 //Declare menu variables
@@ -322,13 +329,51 @@ int main(int argc, char** argv) {
                     cout<<"Distance object has fallen in "<<time<<" seconds: ";
                     cout<<fallDist(time)<<" meters\n";
                 }
+            }
+            case(9):
+            {
+                //Declare variables
+                float mass;//Mass in kilograms
+                float velocity;//Velocity in meter/second
+                float kin_engy;//Kinetic energy in joules
+                
+                //Input mass and velocity
+                cout<<"Enter the mass and velocity of an object"<<endl;
+                cout<<"Mass: ";
+                cin>>mass;
+                cout<<"Velocity: ";
+                cin>>velocity;
+                cout<<endl;
+                 
+                //Calculate
+                kin_engy = kineticE(mass, velocity);
+                
+                //Output
+                cout<<"Kinetic energy of this object: "<<kin_engy<<" joules\n";
+            }
+            case(10):
+            {
+                //Declare variables
+                int scr1, scr2, scr3, scr4, scr5;//Scores
+                
+                //Get input from user
+                cout<<"Please enter 5 scores\n";
+                score(scr1);
+                score(scr2);
+                score(scr3);
+                score(scr4);
+                score(scr5);
+                
+                //Calculate and display the average of the four highest scores
+                calcAvrg(scr1, scr2, scr3, scr4, scr5);
             }}
             }while(m_choice <= 10 && m_choice > 0);
     
     return 0;
 }
 
-bool repeat(){
+bool repeat()
+{
     //Declare variables
     char answer;
     
@@ -342,14 +387,15 @@ bool repeat(){
 }
 //Problem 1 and 2 functions
 //Function that allows the user to input military time
-void gettime(int& hr, int& mn){
-    //Inputs from user
+void gettime(int& hr, int& mn)
+{
     cout<<"Enter time [hour minute]: ";
     cin>>hr;
     cin>>mn;
 }
 //Correctly prints military time
-void miltaout(int time){
+void miltaout(int time)
+{
     if(time<10)
         cout<<"0";
     cout<<time;
@@ -358,7 +404,7 @@ void miltaout(int time){
 //Calculates the average of four numbers
 float average(float n1, float n2, float n3, float n4)
 {
-    //Return the average
+    //Return average
     return (n1+n2+n3+n4)/4;
 }
 //Calculates one standard deviation term
@@ -370,9 +416,7 @@ float stddevi(float s, float avrg)
 //Calculate the average and standard deviation of four numbers
 void avgStandDevi(float n1, float n2, float n3, float n4, float& avrg, float& stand_devi)
 {
-    //Calculate average
     avrg = average(n1, n2, n3, n4);
-    //Calculate standard deviation
     stand_devi = sqrt(average(stddevi(n1, avrg), stddevi(n2, avrg),
                            stddevi(n3, avrg), stddevi(n4, avrg)));
 }
@@ -380,7 +424,6 @@ void avgStandDevi(float n1, float n2, float n3, float n4, float& avrg, float& st
 //Computes the number of coins of a certain denomination that can be fit into
 void calc_coins(int coin_val, int& numb, int& amount_rem)
 {
-    //Calculate num and amount_left
     numb = amount_rem/coin_val;
     amount_rem %= coin_val;
 }
@@ -388,7 +431,6 @@ void calc_coins(int coin_val, int& numb, int& amount_rem)
 //Gets an input of feet and inches from the user
 void convIn(int& ft, int& in)
 {
-    //Get input from user
     cout<<"Enter length in feet and inches\n";
     cout<<"Length [ft in]: ";
     cin>>ft;
@@ -404,7 +446,6 @@ void convOut(int ft, int in, int mtr, int ctm)
 //Calculate the meters and centimeters given feet and inches
 void fttoMtrCm(int ft, int inches, int& mtr, int& ctm)
 {
-    //Define variables
     float ft_float = ft;//Feet as a float
     float mtr_float;//Meters as a float
     
@@ -420,7 +461,7 @@ void fttoMtrCm(int ft, int inches, int& mtr, int& ctm)
 //Calculate the semi-perimeter of a triangle given the lengths of 3 sides
 float perime(float sde_1, float sde_2, float sde_3)
 {
-    //Return the semi-perimeter
+    //Return half perimeter
     return (sde_1+sde_2+sde_3)/2;
 }
 //Determines if three lengths can form a triangle
@@ -464,4 +505,31 @@ float kineticE(float mtr, float veloc)
 {
     //Return kinetic energy
     return (0.5)*mtr*veloc*veloc;
+}
+//Problem 10 functions
+
+//Find the lowest out of five scores
+int fndLow(int scr1, int scr2, int scr3, int scr4, int scr5)
+{
+    int low = scr1;
+    low = min(low, scr2);
+    low = min(low, scr3);
+    low = min(low, scr4);
+    return min(low, scr5);
+}
+void score(int& score)
+{
+    const short MAX_SCORE = 100;//Maximum score
+    do{
+        cout<<"Enter score(0-100): ";
+        cin>>score;
+        if(score<0 || score>MAX_SCORE)
+            cout<<"Invalid score, try again"<<endl;
+    }while(score<0 || score>MAX_SCORE);
+}
+//Calculate and output the average of four scores, dropping one out of five scores
+void calcAvrg(int scr1, int scr2, int scr3, int scr4, int scr5)
+{
+    float avg = (scr1+scr2+scr3+scr4+scr5-fndLow(scr1, scr2, scr3, scr4 ,scr5))/static_cast<float>(4.0);
+    cout<<"The average is: "<<avg<<endl;
 }
