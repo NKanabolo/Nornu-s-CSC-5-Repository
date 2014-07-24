@@ -52,7 +52,7 @@ float fallDist(int time);
 float kineticE(float mtr, float veloc);
 //Used in problem 10
 void score(int& score);
-int fndLow(int scr1, int scr2, int scr3, int scr4, int scr5);
+int lowest(int scr1, int scr2, int scr3, int scr4, int scr5);
 void calcAvrg(int scr1, int scr2, int scr3, int scr4, int scr5);
 
 //Execution
@@ -76,7 +76,7 @@ int main(int argc, char** argv) {
         cout << "9.  Gaddis,  7thEd, Chapter 6, Problem 4\n";
         cout << "10.  Gaddis,  7thEd, Chapter 6, Problem 7\n";
         cout << "11. Quit the program\n";
-        cout << "Enter an integer from 1 to 11 to select an option above: ";
+        cout << "Enter an integer 1 to 11 to select an problem above: ";
         cin>>m_choice;
         cout << endl;
 
@@ -507,9 +507,8 @@ float kineticE(float mtr, float veloc)
     return (0.5)*mtr*veloc*veloc;
 }
 //Problem 10 functions
-
-//Find the lowest out of five scores
-int fndLow(int scr1, int scr2, int scr3, int scr4, int scr5)
+//Find lowest out of five scores
+int lowest(int scr1, int scr2, int scr3, int scr4, int scr5)
 {
     int low = scr1;
     low = min(low, scr2);
@@ -530,6 +529,6 @@ void score(int& score)
 //Calculate and output the average of four scores, dropping one out of five scores
 void calcAvrg(int scr1, int scr2, int scr3, int scr4, int scr5)
 {
-    float avg = (scr1+scr2+scr3+scr4+scr5-fndLow(scr1, scr2, scr3, scr4 ,scr5))/static_cast<float>(4.0);
-    cout<<"The average is: "<<avg<<endl;
+    float avrg = (scr1+scr2+scr3+scr4+scr5-lowest(scr1, scr2, scr3, scr4 ,scr5))/static_cast<float>(4.0);
+    cout<<"Average: "<<avrg<<endl;
 }
