@@ -31,9 +31,9 @@ void miltaout(int time);
 //Used in problem 2
 void gettime(int& hr, int& mn);
 //Used in problem 3
-float average(float s1, float s2, float s3, float s4);
+float average(float n1, float n2, float n3, float n4);
 float stddevi(float s, float average);
-void avgStandDevi(float s1, float s2, float s3, float s4, float& average, float& stand_devi);
+void avgStandDevi(float n1, float n2, float n3, float n4, float& average, float& stand_devi);
 //Used in problem 4
 void calc_coins(int coin_val, int& numb, int& amount_rem);
 //Used in problem 5
@@ -44,7 +44,10 @@ void fttoMtrCm(int ft, int in, int& mtr, int& ctm);
 float perime(float sde_1, float sde_2, float sde_3);
 bool validLength(float sde_1, float sde_2, float sde_3);
 void areaperim(float sde_1, float sde_2, float sde_3, float& perime, float& area);
-
+//Used in problem 7
+float calcRetl(float whole_prc, float markup);
+//Used in Problem 8
+float fallDist(int time);
 //Execution
 int main(int argc, char** argv) {
 //Declare menu variables
@@ -111,7 +114,7 @@ int main(int argc, char** argv) {
             }
             case(2):
             {
-                //Begin problem 2
+                //Problem 2
                 //Declare variables
                 int curr_hour, curr_min;//Current hours and minutes
                 int wtd_hour, wtd_min;//Hours and minutes waited
@@ -162,13 +165,11 @@ int main(int argc, char** argv) {
             }
             case(3):
             {
-                //Short problem description
-                cout<<"Compute average and standard deviation.\n\n";
-                //Begin problem 3
+                //Problem 3
                 //Driver program for average and standard deviation function
                 //Declare variables
                 //Inputs
-                float s1, s2, s3, s4;//Input for average and standard deviation
+                float n1, n2, n3, n4;//Input for average and standard deviation
                 //Outputs
                 float avrg;//Average of the 4 inputs
                 float stand_devi;//Standard deviation of the four inputs
@@ -177,15 +178,18 @@ int main(int argc, char** argv) {
                 do{
                     //Input numbers from the user
                     cout<<"Enter four numbers."<<endl;
-                    cout<<"Format [s1 s2 s3 s4]: ";
-                    cin>>s1;
-                    cin>>s2;
-                    cin>>s3;
-                    cin>>s4;
+                    cout<<"n1: ";
+                    cin>>n1;
+                    cout<<"n2: ";
+                    cin>>n2;
+                    cout<<"n3: ";
+                    cin>>n3;
+                    cout<<"n4: ";
+                    cin>>n4;
                     cout<<endl;
                     
                     //Calculate average and standard deviation
-                    avgStandDevi(s1, s2, s3, s4, avrg, stand_devi);
+                    avgStandDevi(n1, n2, n3, n4, avrg, stand_devi);
                     
                     //Output answer
                     cout<<"Average of the 4 numbers is: "<<avrg<<endl;
@@ -197,9 +201,7 @@ int main(int argc, char** argv) {
             }
             case(4):
             {
-                //Short problem description
-                cout<<"Outputs the type and amount of coins needed to make change\n\n";
-                //Begin problem 4
+                //Problem 4
                 //Declare variables
                 const short QUARTER = 25;//Quarter value
                 const short DIME = 10;//Dime value
@@ -231,9 +233,7 @@ int main(int argc, char** argv) {
             }
             case(5):
             {
-                //Short problem description
-                cout<<"Convert feet and inches to meters and centimeters.\n\n";
-                //Begin problem 5
+                //Problem 5
                 //Declare variables
                 int ft, inch;
                 int meter, cm;//Meters and centimeters
@@ -256,9 +256,7 @@ int main(int argc, char** argv) {
             }
             case(6):
             {
-                //Short problem description
-                cout<<"Calculate the area and perimeter of a triangle.\n\n";
-                //Begin problem 5
+                //Problem 6
                 //Declare variables
                 float sd_1, sd_2, sd_3;//Sides of the triangle
                 //Outputs
@@ -267,9 +265,11 @@ int main(int argc, char** argv) {
                 
                 //Get user input
                 cout<<"Enter the lengths of three sides of a triangle\n";
-                cout<<"Format [a b c]: ";
+                cout<<"Side 1: ";
                 cin>>sd_1;
+                cout<<"Side 2: ";
                 cin>>sd_2;
+                cout<<"Side 3: ";
                 cin>>sd_3;
                 areaperim(sd_1, sd_2, sd_3, perim, area);
                 
@@ -283,6 +283,45 @@ int main(int argc, char** argv) {
                 //End problem 5
                 cout << endl;
                 break;
+            }
+            case(7):
+            {
+                //Problem 7
+                //Declare variables
+                float whole_prc;//Wholesale price
+                float markup;//Mark up percent
+                float retail;//Retail price
+                
+                //Input whole sale and markup percentage
+                do{
+                    cout<<"Enter wholesale price and markup percentage\n";
+                    cout<<"Wholesale price: ";
+                    cin>>whole_prc;
+                    cout<<"Markup percentage: ";
+                    cin>>markup;
+                    cout<<endl;
+                }while(whole_prc<0 || markup<0);
+                
+                //Calculate retail price
+                retail = calcRetl(whole_prc, markup);
+                                
+                //Output result
+                cout<<fixed<<showpoint<<setprecision(2);
+                cout<<"Retail price: $"<<retail<<endl;
+                cout<<endl;
+            }
+            case(8):
+            {
+                //Problem 8
+                //Declare variables
+                int time = 1;//Seconds object has been falling
+                const int MAX_T = 10;//Maximum time object falls
+                
+                //Output the distance traveled for time intervals of one second
+                for(time=1;time<=MAX_T;time++){
+                    cout<<"Distance object has fallen in "<<time<<" seconds: ";
+                    cout<<fallDist(time)<<" meters\n";
+                }
             }}
             }while(m_choice <= 10 && m_choice > 0);
     
@@ -317,33 +356,38 @@ void miltaout(int time){
 }
 //Problem 3 functions
 //Calculates the average of four numbers
-float average(float s1, float s2, float s3, float s4){
-    //Calculate and return the average
-    return (s1+s2+s3+s4)/4;
+float average(float n1, float n2, float n3, float n4)
+{
+    //Return the average
+    return (n1+n2+n3+n4)/4;
 }
 //Calculates one standard deviation term
-float stddevi(float s, float avrg){
-    //Calculate and return one term of the standard deviation
+float stddevi(float s, float avrg)
+{
+    //Return one term of standard deviation
     return (s-avrg)*(s-avrg);
 }
 //Calculate the average and standard deviation of four numbers
-void avgStandDevi(float s1, float s2, float s3, float s4, float& avrg, float& stand_devi){
+void avgStandDevi(float n1, float n2, float n3, float n4, float& avrg, float& stand_devi)
+{
     //Calculate average
-    avrg = average(s1, s2, s3, s4);
+    avrg = average(n1, n2, n3, n4);
     //Calculate standard deviation
-    stand_devi = sqrt(average(stddevi(s1, avrg), stddevi(s2, avrg),
-                           stddevi(s3, avrg), stddevi(s4, avrg)));
+    stand_devi = sqrt(average(stddevi(n1, avrg), stddevi(n2, avrg),
+                           stddevi(n3, avrg), stddevi(n4, avrg)));
 }
 //Problem 4 functions
 //Computes the number of coins of a certain denomination that can be fit into
-void calc_coins(int coin_val, int& numb, int& amount_rem){
+void calc_coins(int coin_val, int& numb, int& amount_rem)
+{
     //Calculate num and amount_left
     numb = amount_rem/coin_val;
     amount_rem %= coin_val;
 }
 //Problem 5 functions
 //Gets an input of feet and inches from the user
-void convIn(int& ft, int& in){
+void convIn(int& ft, int& in)
+{
     //Get input from user
     cout<<"Enter length in feet and inches\n";
     cout<<"Length [ft in]: ";
@@ -352,12 +396,14 @@ void convIn(int& ft, int& in){
     cout<<endl;
 }
 //Outputs how many meters and centimeters are equivalent to feet and inches
-void convOut(int ft, int in, int mtr, int ctm){
+void convOut(int ft, int in, int mtr, int ctm)
+{
     cout<<ft<<" feet and "<<in<<" inches is equivalent to: ";
     cout<<mtr<<" meters and "<<ctm<<" centimeters\n\n";
 }
 //Calculate the meters and centimeters given feet and inches
-void fttoMtrCm(int ft, int inches, int& mtr, int& ctm){
+void fttoMtrCm(int ft, int inches, int& mtr, int& ctm)
+{
     //Define variables
     float ft_float = ft;//Feet as a float
     float mtr_float;//Meters as a float
@@ -372,22 +418,24 @@ void fttoMtrCm(int ft, int inches, int& mtr, int& ctm){
 }
 //Problem 5 functions
 //Calculate the semi-perimeter of a triangle given the lengths of 3 sides
-float perime(float sde_1, float sde_2, float sde_3){
-    //Calculate and return the semi-perimeter
+float perime(float sde_1, float sde_2, float sde_3)
+{
+    //Return the semi-perimeter
     return (sde_1+sde_2+sde_3)/2;
 }
 //Determines if three lengths can form a triangle
-//this bool determines if the lengths can form a triangle
-bool validLength(float sde_1, float sde_2, float sde_3){
+//Bool determines if lengths can form a triangle
+bool validLength(float sde_1, float sde_2, float sde_3)
+{
     return (sde_1>0 && sde_2>0 && sde_3>0 &&
             (sde_1+sde_2)>sde_3 && (sde_1+sde_3)>sde_2 && (sde_2+sde_3)>sde_1);
 }
 //Calculate the area and perimeter of a triangle given the lengths of 3 sides
-void areaperim(float sde_1, float sde_2, float sde_3, float& perim, float& area){
-    //Declare variables
-    float sd_perime;//Semi-perimeter
+void areaperim(float sde_1, float sde_2, float sde_3, float& perim, float& area)
+{
+    float sd_perime;
     
-    //Check that the input is valid and calculate results
+    //Calculate results
     if(validLength(sde_1, sde_2, sde_3)){
         sd_perime= perime(sde_1, sde_2, sde_3);
         perim = sde_1+sde_2+sde_3;
@@ -395,4 +443,25 @@ void areaperim(float sde_1, float sde_2, float sde_3, float& perim, float& area)
     }
     else
         perim = area = -1;
+}
+//Problem 7 functions
+///Calculate retail price
+float calcRetl(float whole_prc, float markup)
+{
+    //Return retail price
+    return whole_prc+((whole_prc*markup)/DEC_PERC);
+}
+//Problem 8 functions
+//Calculate distance fallen
+float fallDist(int time)
+{
+    //Return the distance fallen
+    return (0.5)*EARTH_G*time*time;
+}
+//Problem 9 functions
+//Calculate kinetic energy
+float kineticE(float mtr, float veloc)
+{
+    //Return kinetic energy
+    return (0.5)*mtr*veloc*veloc;
 }
