@@ -217,9 +217,11 @@ int main(int argc, char** argv) {
             }
             case(5):
             {
-                const char number1[]=20;
-                const char number2[]=20;
-                int numb1, numb2;
+                const int SIZE_MAX=20;
+                char number1[SIZE_MAX];
+                char number2[SIZE_MAX];
+                
+                char numb1, numb2;
                 char result[sizeResult(number1,number2)];
                 
                 //Input numbers
@@ -232,7 +234,7 @@ int main(int argc, char** argv) {
                 cout<<right;
                 cout<<setw(width)<<number1<<endl;
                 cout<<"+"<<setw(width-1)<<number2<<endl;
-                bool x=numberAdd(numb1,numb2,result);
+                bool x=numberAdd(number1,number2,result);
                 if(x)cout<<"overflow"<<endl;
                 else cout<<setw(width)<<result<<endl;
 
@@ -331,11 +333,9 @@ int main(int argc, char** argv) {
             }
             case(9):
             {
-                //Short problem description
-                cout<<"Check user input against a predefined list of numbers.\n\n";
-                //Begin problem 9
+                //Problem 9
                 //Declare variables
-                const int SIZE_MAX = 19;//Maximum size of the array as per book definition
+                const int SIZE_MAX = 19;//Max size of array
                 int acc_array[SIZE_MAX];//Account number array
                 int user_acc;//User account number
                 bool match = false;//Flag to determine if there is a match
@@ -372,6 +372,7 @@ int main(int argc, char** argv) {
             }
             case(10):
             {
+                //Problem 10
                 //Declare variables
                 const int ELMNT_P_LNE = 4;//Number of elements per line to be output
                 const int SIZE = 20;//Maximum size of the array by the book definition
@@ -544,7 +545,7 @@ bool numberAdd(char number1[],char number2[],char result[]){
     }while(true);
 }
 
-int sizeResult(char number1[],char number2[]){
+int sizeResult(char number1[], char number2[]){
     int size1=length(number1);
     int size2=length(number2);
     if(size1>size2)return size1+1;
