@@ -7,12 +7,13 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-
+#include <vector>
+#include <string>
+#include <iomanip>
 using namespace std;
 
 //Function Prototypes
 //Play again
-bool play_again();
 //Keeping score
 void keepScoreUsr(int usr_score, int comp_score, int value_usr);
 void keepScoreComp(int comp_score, int usr_score, int value_comp);
@@ -22,6 +23,7 @@ int main(int argc, char** argv){
     //Declare variables
     int choice, usr_score, comp_score, value_usr, value_comp;
     int hp, start, atk, def, mag, hurt, gatk, gdef, ghurt, gmag, ghp;
+    
     bool running=true;
     atk = 12;//user attack
     def = 18;//user defense
@@ -29,15 +31,18 @@ int main(int argc, char** argv){
     gatk = 14;//gremlin attack
     gdef = 18;//gremlin defense
     gmag = 7;//gremlin magic
-
+    
     //Random seed that determines who starts
     start = rand()%2+1;
     hp = rand()%60+100;//health points user starts with
     ghp = rand()%40+100;//health points gremlin starts with
     
+    char question1[] = "Choose a number 1 or 2 to decide who makes the first move: ";
+    char answer1 [2];
+    cout << question1;
+    cin >> answer1;
     
-    //User starts
-    do{
+  
     if (start == 1) 
     {
         cout<<"You attack first and swiftly!";
@@ -228,18 +233,10 @@ int main(int argc, char** argv){
         cout<<endl;
         
         }}
-      }while (play_again());
-      return 0;
     }
+
     
-bool play_again()
-{
-     char again;
-     cout<<"Would you like to play again? y/n "<<endl;
-     cin>>again;      
-     cin.get();
-     return (again == 'y' || again == 'Y');
-}
+
 //Score keeping function
 void keepScoreUsr(int usr_score, int comp_score, int value_usr)
 {
@@ -261,4 +258,10 @@ void keepScoreComp(int comp_score, int usr_score,int value_comp)
     comp_score++;
     comp_score=comp_score+value_comp;
     cout<<endl<<"Gremlin's Score: "<<comp_score<<endl;
+}
+
+void printarray (int arg[], int length) {
+  for (int n=0; n<length; ++n)
+    cout << arg[n] << ' ';
+  cout << '\n';
 }
