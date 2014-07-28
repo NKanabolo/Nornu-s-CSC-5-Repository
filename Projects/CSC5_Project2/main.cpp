@@ -10,10 +10,19 @@
 
 using namespace std;
 
+//Function Prototypes
+//Play again
+bool play_again();
+//Keeping score
+void keepScoreUsr(int usr_score, int comp_score, int value_usr);
+void keepScoreComp(int comp_score, int usr_score, int value_comp);
+
+//Execution
 int main(int argc, char** argv){
     //Declare variables
-    int choice;
+    int choice, usr_score, comp_score, value_usr, value_comp;
     int hp, start, atk, def, mag, hurt, gatk, gdef, ghurt, gmag, ghp;
+    bool running=true;
     atk = 12;//user attack
     def = 18;//user defense
     mag = 7;//user magic
@@ -26,7 +35,9 @@ int main(int argc, char** argv){
     hp = rand()%60+100;//health points user starts with
     ghp = rand()%40+100;//health points gremlin starts with
     
+    
     //User starts
+    do{
     if (start == 1) 
     {
         cout<<"You attack first and swiftly!";
@@ -97,6 +108,7 @@ int main(int argc, char** argv){
         {
             cout<<"You destroyed the gremlin! You are victorious with "<<hp<<" hp to spare.";
             cout<<endl;
+            keepScoreUsr(usr_score, comp_score, value_usr);
         return 0;
         }
         cout<<"The gremlin now has "<<ghp<<" hp left.";
@@ -115,15 +127,17 @@ int main(int argc, char** argv){
         {
             cout<<"You have been defeated. The gremlin lives with "<<ghp<<" hp remaining.";
             cout<<endl;
+            keepScoreComp(comp_score, usr_score, value_comp);
         return 0;
         }
         cout<<"You now have "<<hp<<" hp left.\n"<<endl;
         }
         }
-
+    
     //The gremlin starts
     else 
     {
+        
         cout<<"Gremlin attacked first!"<<endl;
         while (hp > 0 || ghp > 0) {
         choice = rand()%3;
@@ -161,11 +175,12 @@ int main(int argc, char** argv){
         {
             cout<<"You were killed. The gremlin still has "<<ghp<<" hp left.";
             cout<<endl;
+            keepScoreComp(comp_score, usr_score, value_comp);
         return 0;
         }
         cout<<"You now have "<<hp<<" hp left.";
         cout<<endl;
-
+        
         //Next move for user if not killed
         cout<<"Choose what move you want to execute"<<endl;
         cout<<"1 - Strong Attack"<<endl;
@@ -206,11 +221,44 @@ int main(int argc, char** argv){
         {
             cout<<"You destroyed the gremlin! You are victorious with "<<hp<<" hp remaining!";
             cout<<endl;
+            keepScoreUsr(usr_score, comp_score, value_usr);
         return 0;
         }
         cout<<"The gremlin now has "<<ghp<<" hp left."<<endl;
         cout<<endl;
-        }
-      }
+        
+        }}
+      }while (play_again());
+      return 0;
+    }
+    
+bool play_again()
+{
+     char again;
+     cout<<"Would you like to play again? y/n "<<endl;
+     cin>>again;      
+     cin.get();
+     return (again == 'y' || again == 'Y');
+}
+//Score keeping function
+void keepScoreUsr(int usr_score, int comp_score, int value_usr)
+{
+    usr_score=0;
+    value_usr=0;
+    comp_score=0;
+    usr_score++;
+    usr_score=usr_score+value_usr;
+    cout<<endl<<"Your Score: "<<usr_score<<endl;
+    cout<<endl<<"Gremlin's Score: "<<comp_score<<endl;
+
 }
 
+void keepScoreComp(int comp_score, int usr_score,int value_comp)
+{
+    comp_score=0;
+    value_comp=0;
+    usr_score=0;
+    comp_score++;
+    comp_score=comp_score+value_comp;
+    cout<<endl<<"Gremlin's Score: "<<comp_score<<endl;
+}
