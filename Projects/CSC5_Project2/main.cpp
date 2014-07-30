@@ -8,20 +8,14 @@
 #include <ctime>
 #include <cstdlib>
 #include <string>
-<<<<<<< HEAD
-=======
 #include <iomanip>
->>>>>>> 43c8a116af42982dedc77d30ea80b299ff6cf764
 #include <fstream>
 
 using namespace std;
 
-//Global Constant
-
 //Function Prototypes
 //Play again
 //Keeping score
-<<<<<<< HEAD
 //user scores called by reference
 void keepScoreUsr(int& usr_score, int& comp_score, int& value_usr);
 //gremlin scores called by references
@@ -29,11 +23,6 @@ void keepScoreComp(int& comp_score, int& usr_score, int& value_comp);
 //displays map
 void passArr();
 //loops program so score is tallied
-=======
-void keepScoreUsr(int& usr_score, int& comp_score, int& value_usr);
-void keepScoreComp(int& comp_score, int& usr_score, int& value_comp);
-void passArr();
->>>>>>> 43c8a116af42982dedc77d30ea80b299ff6cf764
 bool repeat();
 
 //Execution
@@ -127,11 +116,8 @@ int main(int argc, char** argv){
             {
                 cout<<"You destroyed the gremlin! You are victorious with "<<hp<<" hp to spare.";
                 cout<<endl;
-<<<<<<< HEAD
                 keepScoreUsr(usr_point, comp_point, value_point);//displays user score
-=======
-                keepScoreUsr(usr_point, comp_point, value_point);
->>>>>>> 43c8a116af42982dedc77d30ea80b299ff6cf764
+
                 
             }
             if(ghp>0) {
@@ -152,11 +138,8 @@ int main(int argc, char** argv){
             {
                 cout<<"You have been defeated. The gremlin lives with "<<ghp<<" hp remaining.";
                 cout<<endl;
-<<<<<<< HEAD
                 keepScoreComp(comp_point, usr_point, value_point);//displays gremlin score
-=======
-                keepScoreComp(comp_point, usr_point, value_point);
->>>>>>> 43c8a116af42982dedc77d30ea80b299ff6cf764
+
                 
             }
             if (hp>0){
@@ -248,8 +231,6 @@ int main(int argc, char** argv){
             ghp = ghp - ghurt;
             cout<<"You did "<<ghurt<<" damage to the gremlin!";
             cout<<endl;
-<<<<<<< HEAD
-=======
 
             //User wins
             if (ghp < 1) 
@@ -268,30 +249,9 @@ int main(int argc, char** argv){
     }while(repeat());
     return 0;
 }
->>>>>>> 43c8a116af42982dedc77d30ea80b299ff6cf764
 
-            //User wins
-            if (ghp < 1) 
-            {
-                cout<<"You destroyed the gremlin! You are victorious with "<<hp<<" hp remaining!";
-                cout<<endl;
-                keepScoreUsr(usr_point, comp_point, value_point);
-            }
-            if(ghp>0){
-                cout<<"The gremlin now has "<<ghp<<" hp left."<<endl;
-                cout<<endl;
-            }
-            }
-        }
-    }while(repeat());
-    return 0;
-}
-
-<<<<<<< HEAD
 //User score keeping function
-=======
 //Score keeping function
->>>>>>> 43c8a116af42982dedc77d30ea80b299ff6cf764
 void keepScoreUsr(int& usr_score, int& comp_score, int& value_usr)
 {
     usr_score++;
@@ -301,17 +261,13 @@ void keepScoreUsr(int& usr_score, int& comp_score, int& value_usr)
 
 }
 
-<<<<<<< HEAD
 //Gremlin score keeping function
-=======
->>>>>>> 43c8a116af42982dedc77d30ea80b299ff6cf764
 void keepScoreComp(int& comp_score, int& usr_score,int& value_comp)
 {
     comp_score++;
     comp_score=comp_score+value_comp;
     cout<<endl<<"Gremlin's Score: "<<comp_score<<endl;
     cout<<endl<<"Your Score: "<<usr_score<<endl;
-<<<<<<< HEAD
 }
 
 //Map displaying function
@@ -331,30 +287,6 @@ void passArr(){
 }
 
 //Function to repeat program
-=======
-}
-
-void printarray (int arg[], int length) {
-  for (int n=0; n<length; ++n)
-    cout << arg[n] << ' ';
-  cout << '\n';
-}
-
-void passArr(){
-    const int SIZE = 45;
-    string map [SIZE];\
-    fstream file;
-    file.open("map.txt");
-    
-    for(int i=0;i<SIZE;i++)
-        getline(file,map[i]);
-    
-    file.close();
-    
-    for(int i=0;i<SIZE;i++)
-        cout<<map[i]<<endl;
-}
->>>>>>> 43c8a116af42982dedc77d30ea80b299ff6cf764
 bool repeat(){
     char choice;
     do{
