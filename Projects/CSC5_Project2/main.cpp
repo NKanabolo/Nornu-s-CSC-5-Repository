@@ -32,7 +32,7 @@ int timer(int=0);
 //Execution
 int main(int argc, char** argv){
     //Declare variables
-    int choice, usr_point=0, comp_point=0, value_point=0, stp_time=10;
+    int choice, usr_point=0, comp_point=0, value_point=0;
     int hp, start, atk, def, mag, hurt, gatk, gdef, ghurt, gmag, ghp;
     atk = 12;//user attack
     def = 18;//user defense
@@ -144,8 +144,6 @@ int main(int argc, char** argv){
                 hurt = 0;
             }
             hp = hp - hurt;
-            cout<<"The gremlin administered to you "<<hurt<<" damage.";
-            cout<<endl;
             if (hp>0 && hp<25){
                 cout<<"Low health! Use health potion before it's too late!\n";
                 timer();
@@ -155,15 +153,15 @@ int main(int argc, char** argv){
                 timer(1);
                 timer(2);
             }
-
+            if (timer()>10){
+                cout<<"Health potion not used in time. Game Over. You lose.\n";
+            }
             //If gremlin defeats user
             if (hp < 1) 
             {
                 cout<<"You have been defeated. The gremlin lives with "<<ghp<<" hp remaining.";
                 cout<<endl;
                 keepScoreComp(comp_point, usr_point, value_point);//displays gremlin score
-
-                
             }
             if (hp>0){
                 cout<<"You now have "<<hp<<" hp left.\n"<<endl;
@@ -174,10 +172,9 @@ int main(int argc, char** argv){
         //The gremlin starts
         else 
         {
-
             cout<<"Gremlin attacked first!"<<endl;
             
-            while (hp > 0 && ghp > 0 && timer()<=10) {
+            while (hp > 0 && ghp > 0&&timer()<=10) {
                 cout<<"Timer = "<<timer()<<" secs"<<endl;
             choice = rand()%3;
             switch (choice) 
@@ -227,7 +224,6 @@ int main(int argc, char** argv){
                 cout<<"You were killed. The gremlin still has "<<ghp<<" hp left.";
                 cout<<endl;
                 keepScoreComp(comp_point, usr_point, value_point);
-                
             }
             if (hp>0){
                 cout<<"You now have "<<hp<<" hp left.";
@@ -239,7 +235,7 @@ int main(int argc, char** argv){
             cout<<"1 - Strong Attack"<<endl;
             cout<<"2 - Magic Attack"<<endl;
             cout<<"3 - Health Potion + Defensive Move"<<endl;
-            do{cin>>choice;}while(choice>3 || choice<1);
+            do{cin>>choice;}while(choice>3 || choice<1&&hp>0&&timer()<=10);
             switch (choice) 
             {
             case 1:
@@ -257,7 +253,6 @@ int main(int argc, char** argv){
                 def = rand()%20+10;
                 mag = rand()%5;
                 hp+=20;
-                
                 break; 
             }
             
@@ -268,13 +263,17 @@ int main(int argc, char** argv){
                 ghurt = 0;
             }
             ghp = ghp - ghurt;
+            if (timer()>10){
+                cout<<"Health potion not used in time. Game Over. You lose.\n";
+            }else{
             cout<<"You did "<<ghurt<<" damage to the gremlin!";
             cout<<endl;
-
+            }
+            
             //User wins
             if (ghp < 1) 
             {
-                cout<<"You destroyed the gremlin! You are victorious with "<<hp<<" hp remaining!";
+                cout<<"You destroyed the gremlin! You are victorious!";
                 cout<<endl;
                 keepScoreUsr(usr_point, comp_point, value_point);
             }
@@ -296,7 +295,6 @@ void keepScoreUsr(int& usr_score, int& comp_score, int& value_usr)
     usr_score=usr_score+value_usr;
     cout<<endl<<"Your Score: "<<usr_score<<endl;
     cout<<endl<<"Gremlin's Score: "<<comp_score<<endl;
-
 }
 
 //Gremlin score keeping function
