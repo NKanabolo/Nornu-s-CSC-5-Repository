@@ -16,19 +16,23 @@ using namespace std;
 //Function Prototypes
 //Play again
 //Keeping score
-//user scores called by reference
+//user scores called by reference function
 void keepScoreUsr(int& usr_score, int& comp_score, int& value_usr);
-//gremlin scores called by references
+//gremlin scores called by references function
 void keepScoreComp(int& comp_score, int& usr_score, int& value_comp);
-//displays map
+//displays map function
 void passArr();
 //loops program so score is tallied
 bool repeat();
-
+//Countdown timer function
+void cntDwn(int strt,int freeze);
+//Pause function
+void pause(int secs);
+int timer(int=0);
 //Execution
 int main(int argc, char** argv){
     //Declare variables
-    int choice, usr_point=0, comp_point=0, value_point=0;
+    int choice, usr_point=0, comp_point=0, value_point=0, stp_time=10;
     int hp, start, atk, def, mag, hurt, gatk, gdef, ghurt, gmag, ghp;
     atk = 12;//user attack
     def = 18;//user defense
@@ -37,26 +41,34 @@ int main(int argc, char** argv){
     gdef = 18;//gremlin defense
     gmag = 7;//gremlin magic
     
-        do{
+    cout<<timer()<<" secs"<<endl;
+    do{
         //Random seed that determines who starts
         start = rand()%2+1;
-        hp = rand()%60+100;//health points user starts with
-        ghp = rand()%40+100;//health points gremlin starts with
+        hp = rand()%60+97;//health points user starts with
+        ghp = rand()%40+98;//health points gremlin starts with
 
         //Project map
         passArr();
+        
+        //Setup the random number seed
+        srand(static_cast<unsigned int>(time(0)));
 
+        //Start the Count Down
+        
+        //Display health for both characters
+        cout<<endl<<endl<<"Wizard health: "<<hp<<endl;
+        cout<<"Gremlin health: "<<ghp<<endl<<endl;
         if (start == 1) 
         {
             cout<<"You attack first and swiftly!";
             cout<<endl;
-
             //User Menu
             while (hp > 0 && ghp > 0) {
             cout<<"Choose what move you want to execute"<<endl;
             cout<<"1 - Strong Attack"<<endl;
             cout<<"2 - Magic Attack"<<endl;
-            cout<<"3 - Defensive Move"<<endl;
+            cout<<"3 - Health Potion + Defensive Move"<<endl;
             do
             {
                 cin>>choice;
@@ -77,6 +89,7 @@ int main(int argc, char** argv){
                 atk = rand()%10+10;
                 def = rand()%20+10;
                 mag = rand()%5;
+                hp += 20;
                 break;
             }
 
@@ -98,6 +111,7 @@ int main(int argc, char** argv){
                 gatk = rand()%10+10;
                 gdef = rand()%20+10;
                 gmag = rand()%5;
+                ghp += 40;
                 break;
             }
 
@@ -122,7 +136,7 @@ int main(int argc, char** argv){
             }
             if(ghp>0) {
                 cout<<"The gremlin now has "<<ghp<<" hp left.";
-            cout<<endl;
+                cout<<endl;
             }
             hurt = (gatk - mag) - (def/gatk);
             if (hurt < 0) 
@@ -132,6 +146,15 @@ int main(int argc, char** argv){
             hp = hp - hurt;
             cout<<"The gremlin administered to you "<<hurt<<" damage.";
             cout<<endl;
+            if (hp>0 && hp<25){
+                cout<<"Low health! Use health potion before it's too late!\n";
+                timer();
+                 cout<<"Timer = "<<timer()<<" secs"<<endl;
+            }else{
+                timer(3);
+                timer(1);
+                timer(2);
+            }
 
             //If gremlin defeats user
             if (hp < 1) 
@@ -153,7 +176,9 @@ int main(int argc, char** argv){
         {
 
             cout<<"Gremlin attacked first!"<<endl;
-            while (hp > 0 && ghp > 0) {
+            
+            while (hp > 0 && ghp > 0 && timer()<=10) {
+                cout<<"Timer = "<<timer()<<" secs"<<endl;
             choice = rand()%3;
             switch (choice) 
             {
@@ -171,6 +196,8 @@ int main(int argc, char** argv){
                 gatk = rand()%10+10;
                 gdef = rand()%20+10;
                 gmag = rand()%5;
+                ghp += 40;
+                cout<<"Gremlin stole your health potion!\n";
                 break;
             }
 
@@ -183,6 +210,16 @@ int main(int argc, char** argv){
             hp = hp - hurt;
             cout<<"The gremlin hit you for "<<hurt<<" damage.";
             cout<<endl;
+            
+            if (hp>0 && hp<25){
+                cout<<"Low health! Use health potion before it's too late!\n";
+                timer();
+                 cout<<"Timer = "<<timer()<<" secs"<<endl;
+            }else{
+                timer(3);
+                timer(1);
+                timer(2);
+            }
 
             //If the gremlin kills the user
             if (hp < 1) 
@@ -201,7 +238,7 @@ int main(int argc, char** argv){
             cout<<"Choose what move you want to execute"<<endl;
             cout<<"1 - Strong Attack"<<endl;
             cout<<"2 - Magic Attack"<<endl;
-            cout<<"3 - Defensive Move"<<endl;
+            cout<<"3 - Health Potion + Defensive Move"<<endl;
             do{cin>>choice;}while(choice>3 || choice<1);
             switch (choice) 
             {
@@ -219,9 +256,11 @@ int main(int argc, char** argv){
                 atk = rand()%10+10;
                 def = rand()%20+10;
                 mag = rand()%5;
-                break;
+                hp+=20;
+                
+                break; 
             }
-
+            
             //User hurts gremlin
             ghurt = (atk - gmag) - (gdef/atk);
             if (ghurt < 0) 
@@ -245,7 +284,6 @@ int main(int argc, char** argv){
             }
             }
         }
-        
     }while(repeat());
     return 0;
 }
@@ -299,4 +337,44 @@ bool repeat(){
     if(choice=='n'){
         return false;
     }
+}
+int timer(int flag){
+    //Declare Variables
+    static int strt=time(0);
+    static int secs=time(0);
+    static bool stop=false;
+    int now=time(0);
+    if(stop&&flag!=2){ //Stopped and not reset
+        return secs;
+    }else if(flag==0){ //Normal timer
+        secs=now-strt;
+    }else if(flag==3){ //Reset
+        strt=time(0);
+        secs=now-strt;
+    }else if(flag==2){ //Restart
+        stop=false;
+        strt=now-secs;
+    }else{             //When stopped
+        stop=true;
+        secs=now-strt;
+    }
+    return secs;
+}
+void cntDwn(int strt,int freeze){
+    //Perform the countdown
+    do{
+        cout<<strt<<" seconds remaining"<<endl;
+        strt-=freeze;
+        pause(freeze);
+    }while(strt>0);
+    cout<<strt<<" seconds"<<endl;
+}
+
+void pause(int secs){
+    //Start the time
+    int stp,wait,strt=time(0);
+    do{
+        stp=time(0);
+        wait=stp-strt;
+    }while(wait<=secs);
 }
