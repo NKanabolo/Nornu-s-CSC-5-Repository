@@ -53,8 +53,6 @@ int main(int argc, char** argv){
         
         //Setup the random number seed
         srand(static_cast<unsigned int>(time(0)));
-
-        //Start the Count Down
         
         //Display health for both characters
         cout<<endl<<endl<<"Wizard health: "<<hp<<endl;
@@ -338,10 +336,10 @@ bool repeat(){
 }
 int timer(int flag){
     //Declare Variables
-    static int strt=time(0);
-    static int secs=time(0);
-    static bool stop=false;
-    int now=time(0);
+    static int strt=time(0);//remember start time
+    static int secs=time(0);//seconds elapsed
+    static bool stop=false;//remember if timer stopped
+    int now=time(0);//current time
     if(stop&&flag!=2){ //Stopped and not reset
         return secs;
     }else if(flag==0){ //Normal timer
@@ -367,7 +365,6 @@ void cntDwn(int strt,int freeze){
     }while(strt>0);
     cout<<strt<<" seconds"<<endl;
 }
-
 void pause(int secs){
     //Start the time
     int stp,wait,strt=time(0);
