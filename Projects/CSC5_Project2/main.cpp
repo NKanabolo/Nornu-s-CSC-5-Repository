@@ -282,6 +282,23 @@ int main(int argc, char** argv){
             }
         }
     }while(repeat());
+    ofstream outputFile;
+    string comm1, comm2;
+    outputFile.open("comments.txt");
+    cout<<"You conquered the gremlin!"<<endl;
+    cout<<"Enter 2 words you have in mind to describe the game and I'll do my best to sort it out"<<endl;
+    
+    cin>>comm1;
+    cin>>comm2;
+    cout<<"You thought the game was ";
+    cout<<comm1;
+    cout<<" and ";
+    cout<<comm2<<"?";
+    cout<<"Okay, well thanks for your input. I'll be sure to record this and address it right away"<<endl;
+    outputFile<<comm1<<endl;
+    outputFile<<comm2<<endl;
+    
+    outputFile.close();
     return 0;
 }
 
